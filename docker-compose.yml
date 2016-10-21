@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  vpnc:
+    image: jeboehm/vpnc:latest
+    build: ./
+    restart: on-failure:5
+    env_file: .env
+    privileged: true
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_add:
+      - NET_ADMIN

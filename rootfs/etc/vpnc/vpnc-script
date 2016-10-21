@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# this effectively disables changes to /etc/resolv.conf
+INTERNAL_IP4_DNS=
+
+# This sets up split networking regardless
+# of the concentrators specifications.
+# You can add as many routes as you want,
+# but you must set the counter $CISCO_SPLIT_INC
+# accordingly
+if [ "${DEFAULT_GW}" == "false" ]
+then
+  CISCO_SPLIT_INC=1
+  CISCO_SPLIT_INC_0_ADDR=${VPNC_NETWORK}
+  CISCO_SPLIT_INC_0_MASK=${VPNC_NETMASK}
+  CISCO_SPLIT_INC_0_MASKLEN=32
+  CISCO_SPLIT_INC_0_PROTOCOL=0
+  CISCO_SPLIT_INC_0_SPORT=0
+  CISCO_SPLIT_INC_0_DPORT=0
+fi
+
+. /usr/share/vpnc-scripts/vpnc-script
